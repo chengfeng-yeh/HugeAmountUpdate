@@ -53,6 +53,7 @@ public class CubeGenerator : MonoBehaviour
                 break;
             case ROTATE_METHOD.ROTATE_BY_JOB:
                 m_generateCubeCoroutine = StartCoroutine(GenerateForJobCubes());
+                m_cubeRotationJob = new CubeRotationJob();
                 break;
         }        
     }
@@ -78,8 +79,7 @@ public class CubeGenerator : MonoBehaviour
             if (null != m_forJobCubes && m_allCubeGenerated)
             {
                 float tempDeltaTime = Time.deltaTime;
-
-                m_cubeRotationJob = new CubeRotationJob();
+                
                 m_cubeRotationJob.m_DeltaTime = tempDeltaTime;
                 m_cubeRotationHandle = m_cubeRotationJob.Schedule(m_transformsAccessArray);
             }
